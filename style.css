@@ -1,0 +1,29 @@
+
+.grid div {
+    border: 1px solid;
+    --size: 40px;
+    border-radius: 20px;
+    height: var(--size);
+    width: var(--size);
+    opacity: 0.7;
+    display: inline-block;
+
+}
+
+.player-one {
+    background-color: red;
+    border-radius: 20px;
+}
+
+.player-two {
+    background-color: blue;
+    border-radius: 20px;
+}
+
+.base div{
+
+    height: 40px;
+    width: 40px;
+    background-color: green;
+    display: inline-block;
+}
