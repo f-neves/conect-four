@@ -1,0 +1,30 @@
+primeiro texto
+
+comando:
+vim NomeDoArquivo.extesaodoarquivo
+
+ex:
+vim file.txt
+
+para começar a escrever: teclar "i"
+
+para finalizar:"Esc" e depois ":wq" e enter
+
+
+
+Para inserir arquivos na pasta:
+
+quais arquivos estou inserindo
+Ex:
+git add .
+
+qual o texto dentro do arquivo
+git commit -m " "
+
+
+Trazer todos os logs
+git log
+git log --online
+
+últimos 5 commits
+git log -n 5
