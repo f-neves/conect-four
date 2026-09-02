@@ -1,5 +1,7 @@
 # Liga 4
 
+**[Jogar agora](https://f-neves.github.io/conect-four/)** · publicado pelo GitHub Pages a partir do `main`.
+
 Liga 4 em DOM puro, sem dependências e sem build. É só servir a pasta por HTTP.
 
 ```bash
