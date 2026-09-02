@@ -1,0 +1,14 @@
+# macOS / Windows
+.DS_Store
+Thumbs.db
+desktop.ini
+*.stackdump
+
+# editores
+.vscode/
+.idea/
+*.swp
+
+# dependencias / build
+node_modules/
+dist/

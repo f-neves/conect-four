@@ -1,40 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect Four</title>
-    <link rel="stylesheet" href="style.css ">
-</head>
-<body>
- 
-    <h1>Game
-    </h1>
-        
-        <h2 id="result"></h2>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
+    />
+    <meta name="theme-color" content="#080a12" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Liga 4</title>
 
-        
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="app" data-turn="1">
+      <header id="hud">
+        <div class="seat" data-seat="1">
+          <span class="chip chip--1"></span>
+          <span class="seat-name">Jogador 1</span>
+        </div>
+        <p id="turn"></p>
+        <div class="seat seat--end" data-seat="2">
+          <span class="seat-name">Jogador 2</span>
+          <span class="chip chip--2"></span>
+        </div>
+      </header>
+
+      <main id="stage">
+        <div id="boardWrap">
+          <div id="board"></div>
+          <div id="columns"></div>
+
+        </div>
+      </main>
 
 
-    <h3> The current player is: Player 
-    <span id="current-player">
-    </span>
-    </h3>
+      <!-- os paineis cobrem a tela toda: a lista de opcoes nao caberia
+           dentro da caixa do tabuleiro num celular -->
+      <div id="panel" data-view="menu">
+        <section class="screen" data-screen="menu">
+          <h1 class="title">LIGA 4</h1>
+          <p class="tagline">quatro em linha, em qualquer direção</p>
+          <div class="menu-list">
+            <button class="item item--go" data-nav data-action="play">
+              Jogar
+            </button>
+            <button class="item" data-nav data-action="options">
+              Opções
+            </button>
+            <button class="item" data-nav data-action="stats">
+              Estatísticas
+            </button>
+          </div>
+          <p class="foot" id="menuSummary"></p>
+        </section>
 
-    <script>
-        const tiles = prompt("How many tiles will have in your game?", "7");
-    </script>
-    <div data-cont="tiles"></div>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <section class="screen" data-screen="options">
+          <h2 class="heading">Opções</h2>
+          <div class="option-list" id="optionList"></div>
+          <button class="item item--back" data-nav data-action="back">
+            Voltar
+          </button>
+        </section>
 
-    <div id="dvMain" class="grid div">
-    </div>  
-    <div id="dvMain2" class="base">
-    </div>  
+        <section class="screen" data-screen="stats">
+          <h2 class="heading">Estatísticas</h2>
+          <p class="foot" id="statsScope"></p>
+          <ul class="stats-table" id="statsTable"></ul>
+          <div class="menu-list">
+            <button class="item item--danger" data-nav data-action="reset">
+              Zerar estatísticas
+            </button>
+            <button class="item item--back" data-nav data-action="back">
+              Voltar
+            </button>
+          </div>
+        </section>
 
-    <script src= 'index.js' charset="utf-8"></script>
+        <section class="screen" data-screen="result">
+          <h2 class="heading" id="resultTitle"></h2>
+          <p class="foot" id="resultLine"></p>
+          <div class="menu-list">
+            <button class="item item--go" data-nav data-action="play">
+              Jogar de novo
+            </button>
+            <button class="item" data-nav data-action="options">
+              Opções
+            </button>
+            <button class="item" data-nav data-action="quit">Menu</button>
+          </div>
+        </section>
+      </div>
 
-</body>
+      <footer id="bar">
+        <button id="btnMenu" class="tool" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="2.4" rx="1.2" />
+            <rect x="3" y="10.8" width="18" height="2.4" rx="1.2" />
+            <rect x="3" y="16.6" width="18" height="2.4" rx="1.2" />
+          </svg>
+          <span>Menu</span>
+        </button>
+        <button id="btnUndo" class="tool" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M9 7H14a6 6 0 0 1 0 12h-4v-2.4h4a3.6 3.6 0 0 0 0-7.2H9v3L3.6 8.2 9 4z"
+            />
+          </svg>
+          <span>Desfazer</span>
+        </button>
+        <button id="btnRestart" class="tool" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 5V2L7.5 6.2 12 10.4V7a5.4 5.4 0 1 1-5.4 5.4H4.2A7.8 7.8 0 1 0 12 5z"
+            />
+          </svg>
+          <span>Reiniciar</span>
+        </button>
+      </footer>
+
+      <p id="hints">
+        <span><kbd>←</kbd><kbd>→</kbd> escolher</span>
+        <span class="sep">·</span>
+        <span><kbd>Enter</kbd> jogar</span>
+        <span class="sep">·</span>
+        <span><kbd>1</kbd>–<kbd id="hintLastCol">7</kbd> coluna</span>
+        <span class="sep">·</span>
+        <span><kbd>Z</kbd> desfazer</span>
+        <span class="sep">·</span>
+        <span><kbd>Esc</kbd> menu</span>
+      </p>
+    </div>
+
+    <script src="./settings.js"></script>
+    <script src="./audio.js"></script>
+    <script src="./menu.js"></script>
+    <script src="./index.js"></script>
+  </body>
 </html>
